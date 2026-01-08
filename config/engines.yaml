@@ -1,0 +1,105 @@
+# Engine Configuration
+
+# Whisper Local Engine
+whisper:
+  enabled: true
+  model_size: "large"  # tiny/base/small/medium/large/large-v2/large-v3
+  device: "auto"      # auto/cpu/cuda
+  compute_type: "float16"  # float16/float32/int8
+  model_path: null  # Optional local model path (defaults to auto-download)
+  language: "ja"  # Default language (auto/zh/en/etc)
+
+# Qwen (Alibaba Dashscope) Engine
+qwen:
+  enabled: true
+  model: "qwen3-asr-flash-realtime"  # Model name
+
+  # API authentication
+  # Get API key from: https://help.aliyun.com/zh/model-studio/get-api-key
+  # Beijing region: https://dashscope.aliyun.com
+  # Singapore region: https://dashscope-intl.aliyuncs.com
+  api_key: "${DASHSCOPE_API_KEY}"  # Read from environment variable
+
+  # WebSocket URL
+  # Beijing: wss://dashscope.aliyuncs.com/api-ws/v1/realtime
+  # Singapore: wss://dashscope-intl.aliyuncs.com/api-ws/v1/realtime
+  url: "wss://dashscope.aliyuncs.com/api-ws/v1/realtime"
+
+  # Recognition parameters
+  language: "zh"  # zh/en/ja/de/ko/ru/fr/pt/ar/it/es
+  sample_rate: 16000  # 8000 or 16000
+  format: "pcm"  # pcm or opus
+
+  # VAD (Voice Activity Detection)
+  enable_vad: true  # Enable server-side VAD
+  vad_threshold: 0.2  # VAD threshold (0-1)
+  vad_silence_duration_ms: 800  # Silence duration to detect speech end
+
+  # Optional: Corpus text for better recognition accuracy
+  corpus_text: null  # e.g., "这是一段脱口秀表演"
+
+# Azure Speech Services
+azure:
+  enabled: false
+  region: "eastasia"
+
+  # API authentication
+  api_key: "${AZURE_SPEECH_KEY}"
+
+  # Recognition parameters
+  parameters:
+    language: "zh-CN"
+    profanity_option: "Masked"
+    output_format: "Detailed"
+
+  # Real-time mode
+  streaming:
+    enabled: true
+
+  # Custom endpoint (optional)
+  endpoint: null
+  endpoint_id: null
+
+# Baidu Speech Recognition
+baidu:
+  enabled: false
+
+  # API authentication
+  app_id: "${BAIDU_APP_ID}"
+  api_key: "${BAIDU_API_KEY}"
+  secret_key: "${BAIDU_SECRET_KEY}"
+
+  # Recognition parameters
+  parameters:
+    dev_pid: 1737  # 1737: Chinese (accelerated)
+    rate: 16000
+    format: "wav"
+
+  # Limits
+  limits:
+    max_file_size: 6072000  # ~6MB
+    max_duration: 60  # seconds
+
+# Paddle Speech Engine
+paddle:
+  enabled: false
+  model_type: "asr"  # asr/k2
+
+  # Model configuration
+  model:
+    name: "conformer_u2pp_wenetspeech"
+    # Local path or auto-download
+    path: null
+
+  # Device configuration
+  device: "gpu"  # gpu/cpu
+
+  # Recognition parameters
+  parameters:
+    lang: "zh"
+    sample_rate: 16000
+
+  # Streaming recognition
+  streaming:
+    enabled: true
+    chunk_size: 16  # chunk_size in ms * sample_rate / 1000

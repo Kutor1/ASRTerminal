@@ -1,0 +1,35 @@
+# ASR Terminal - Production Dependencies
+
+# Audio Processing
+librosa==0.10.1
+soundfile==0.12.1
+# pyaudio==0.2.13  # Optional: Not compatible with Python 3.12, use conda install -c conda-forge pyaudio if needed
+webrtcvad==2.0.10
+
+# Whisper Local Engine
+openai-whisper==20231117
+# PyTorch updated for Python 3.12 compatibility
+torch>=2.2.0
+torchaudio>=2.2.0
+
+# Cloud API Engines (Optional - install as needed)
+dashscope>=1.24.8            # Alibaba Qwen (required for qwen engine)
+# azure-cognitiveservices-speech==1.34.0  # Azure Speech
+# paddlepaddle==2.5.2         # Baidu PaddlePaddle
+# paddleaudio==1.0.0          # PaddleAudio
+requests==2.31.0            # HTTP requests for APIs
+
+# Configuration and CLI
+pyyaml==6.0.1
+click==8.1.7
+python-dotenv==1.0.0
+
+# UI and Output
+rich==13.7.0
+tqdm==4.66.1
+
+# Output Formats
+pysrt==1.1.2
+
+# Utilities
+numpy>=1.24.0

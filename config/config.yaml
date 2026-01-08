@@ -1,0 +1,127 @@
+# ASR Terminal - Main Configuration
+
+# Application Settings
+app:
+  name: "ASR Terminal"
+  version: "1.0.0"
+  debug: false
+  log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+
+# Engine Settings
+engine:
+  # Default engine to use
+  default: "whisper"
+
+  # Engine priority for fallback
+  priority:
+    - whisper
+    - qwen
+    - azure
+    - baidu
+    - paddle
+
+  # Fallback configuration
+  fallback:
+    enabled: true
+    max_retries: 3
+    retry_delay: 1.0  # seconds
+
+# Audio Processing Configuration
+audio:
+  # General settings
+  sample_rate: 16000
+  channels: 1
+
+  # Real-time mode configuration
+  realtime:
+    chunk_size: 1024        # Audio chunk size (samples)
+    chunk_duration: 0.0625  # Duration per chunk (seconds)
+    vad_enabled: true       # Enable Voice Activity Detection
+    vad_aggressiveness: 2   # VAD aggressiveness (0-3)
+    silence_threshold: 2.0  # Silence threshold (seconds)
+
+  # Batch mode configuration
+  batch:
+    normalize: true         # Audio normalization
+    split_on_silence: false # Split on silence
+    min_silence_len: 500    # Minimum silence length (ms)
+
+  # Preprocessing pipeline
+  preprocessing:
+    - resample
+    - convert_to_mono
+    - normalize
+    - trim_silence
+
+# Output Configuration
+output:
+  # Console display
+  console:
+    enabled: true
+    show_timestamps: true
+    show_confidence: false
+    word_by_word: false
+
+  # File export
+  export:
+    formats:
+      - txt
+      - srt
+      - json
+    directory: "./output"
+    auto_timestamp: true
+
+  # Subtitle configuration
+  subtitle:
+    max_chars_per_line: 42
+    max_lines: 2
+    min_duration: 1.0  # Minimum subtitle duration (seconds)
+
+# Performance Configuration
+performance:
+  # Local model cache
+  cache:
+    enabled: true
+    directory: "./models"
+    max_size_gb: 10
+
+  # Batch processing concurrency
+  batch:
+    max_workers: 4  # Maximum concurrent workers
+    queue_size: 100
+
+  # Streaming buffer
+  streaming:
+    buffer_size: 5  # seconds
+    prefetch_count: 2
+
+# Logging Configuration
+logging:
+  version: 1
+  disable_existing_loggers: false
+
+  formatters:
+    standard:
+      format: "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
+      datefmt: "%Y-%m-%d %H:%M:%S"
+
+  handlers:
+    console:
+      class: logging.StreamHandler
+      level: INFO
+      formatter: standard
+      stream: ext://sys.stdout
+
+    file:
+      class: logging.handlers.RotatingFileHandler
+      level: DEBUG
+      formatter: standard
+      filename: ./logs/asr_terminal.log
+      maxBytes: 10485760  # 10MB
+      backupCount: 5
+
+  loggers:
+    asr_terminal:
+      level: DEBUG
+      handlers: [console, file]
+      propagate: false
