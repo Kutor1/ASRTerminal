@@ -7,7 +7,7 @@
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-支持实时语音转文字和批量文件处理，集成多种识别引擎
+[**🇺🇸 English**](README.md) | 支持实时语音转文字和批量文件处理，集成多种识别引擎
 
 [功能特性](#功能特性) • [安装](#安装) • [使用方法](#使用方法) • [配置](#配置) • [支持的引擎](#支持的引擎)
 

@@ -7,7 +7,7 @@
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-Support real-time and batch speech recognition with multiple engines.
+[**🇨🇳 中文文档**](README_CN.md) | Support real-time and batch speech recognition with multiple engines.
 
 [Features](#features) • [Installation](#installation) • [Usage](#usage) • [Configuration](#configuration) • [Engines](#engines)
 
