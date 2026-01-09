@@ -38,6 +38,25 @@ qwen:
   # Optional: Corpus text for better recognition accuracy
   corpus_text: null  # e.g., "这是一段脱口秀表演"
 
+# FunASR (Alibaba Dashscope) Engine - Async File Recognition
+funasr:
+  enabled: false
+  model: "fun-asr"  # Model name
+
+  # API authentication (uses same API key as Qwen)
+  api_key: "${DASHSCOPE_API_KEY}"
+  base_url: "https://dashscope.aliyuncs.com/api/v1"  # Beijing: https://dashscope.aliyuncs.com/api/v1
+
+  # Recognition parameters
+  language_hints: ["zh", "en"]  # Language hints (zh, en, ja, ko, etc.)
+
+  # Task settings
+  poll_interval: 2  # Seconds between status checks
+  max_wait_time: 300  # Maximum wait time in seconds (5 minutes)
+
+  # Output format
+  output_format: "json"  # json or other formats
+
 # Azure Speech Services
 azure:
   enabled: false

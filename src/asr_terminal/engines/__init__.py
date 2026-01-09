@@ -18,6 +18,12 @@ try:
 except ImportError:
     pass
 
+try:
+    from .funasr_engine import FunASREngine, FunASRConfig
+    EngineFactory.register_engine("funasr", FunASREngine, FunASRConfig)
+except ImportError:
+    pass
+
 # try:
 #     from .azure_engine import AzureEngine, AzureConfig
 #     EngineFactory.register_engine("azure", AzureEngine, AzureConfig)
@@ -45,4 +51,6 @@ __all__ = [
     "WhisperConfig",
     "QwenEngine",
     "QwenConfig",
+    "FunASREngine",
+    "FunASRConfig",
 ]

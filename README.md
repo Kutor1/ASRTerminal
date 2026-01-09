@@ -444,7 +444,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Support
 
-- 📧 Email: your.email@example.com
+- 📧 Email: kutor1nota@outlook.com
 - 🐛 Issues: [GitHub Issues](https://github.com/yourusername/asr-terminal/issues)
 - 💬 Discussions: [GitHub Discussions](https://github.com/yourusername/asr-terminal/discussions)
 
